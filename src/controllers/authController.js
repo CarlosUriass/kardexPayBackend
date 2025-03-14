@@ -1,5 +1,6 @@
 const Usuario = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const authController = {
   // Login del usuario
@@ -19,11 +20,16 @@ const authController = {
         return res.status(401).json({ error: "Contraseña incorrecta" });
       }
 
-      // Si todo está correcto
+      // Generar un JWT para el usuario
+      const token = jwt.sign(
+        { id_usuario: user.id_usuario, correo: user.correo, rol: user.rol }, // Payload (datos que deseas incluir en el token)
+        process.env.JWT_SECRET, // Clave secreta para firmar el token
+        { expiresIn: "1h" } // Tiempo de expiración del token (en este caso 1 hora)
+      );
+
+      // Si todo está correcto, enviar el token al cliente
       res.status(200).json({
-        id_usuario: user.id_usuario,
-        correo: user.correo,
-        rol: user.rol,
+        token, // El token generado
         mensaje: "Login exitoso",
       });
     } catch (error) {
