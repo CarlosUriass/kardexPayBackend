@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const { connectDB } = require("./src/config/db"); // Importar la función de conexión
 const servicioRoutes = require("./src/routes/servicioRoutes");
 const authRoutes = require("./src/routes/authRoutes");
+const LoginLogRoutes = require("./src/routes/LoginLogsRoutes");
 
 // Cargar las variables de entorno
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 // Usar las rutas de servicios
 app.use("/api", servicioRoutes);
 app.use("/api/auth", authRoutes); // Agrega las rutas de autenticación
+app.use("/api/loginLog", LoginLogRoutes);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 5001;
