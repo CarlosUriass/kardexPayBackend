@@ -1,30 +1,27 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../config/db");
+const { sequelize, DataTypes } = require("../../../plugins");
 
-const Usuario = sequelize.define(
-  "Usuario",
+const Usuarios = sequelize.define(
+  "Usuarios",
   {
     id_usuario: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
       allowNull: false,
+      autoIncrement: true,
       field: "id_usuario",
     },
     id_unidad_academica: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "unidades_academicas",
-        key: "id_unidad_academica",
-      },
       field: "id_unidad_academica",
     },
-    correo: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-      field: "correo",
+      validate: {
+        isEmail: true,
+      },
+      field: "email",
     },
     password_hash: {
       type: DataTypes.STRING,
@@ -34,30 +31,23 @@ const Usuario = sequelize.define(
     rol: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "roles",
-        key: "id_rol",
-      },
       field: "rol",
     },
     fecha_creacion: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
       field: "fecha_creacion",
     },
     estatus: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
       field: "estatus",
     },
   },
   {
     tableName: "usuarios",
     timestamps: false,
-    underscored: true,
   }
 );
 
-module.exports = Usuario;
+module.exports = Usuarios;
