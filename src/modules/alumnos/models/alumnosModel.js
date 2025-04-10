@@ -6,6 +6,7 @@ const Alumnos = sequelize.define(
     matricula: {
       type: DataTypes.STRING,
       allowNull: false,
+      primaryKey: true,
       field: "matricula",
     },
     nombre_alumno: {

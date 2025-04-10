@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const loginRouter = require("./modules/auth/routes/loginRoutes");
+const getStudentDataRouter = require("./modules/alumnos/routes/AlumnosRoutes");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 // rutas
 
-app.use("/auth", loginRouter); // Ruta para login bajo /auth
+app.use("/auth", loginRouter);
+app.use("/api", getStudentDataRouter);
 
 module.exports = app;
