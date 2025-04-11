@@ -18,8 +18,6 @@ const login = async (req, res) => {
       return res.status(401).json({ error: "Contraseña incorrecta" });
     }
 
-    // preparar el JWT
-
     const rol = user.rol;
     const id_oficina = user.id_oficina;
 
