@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const { getEnv } = require("../dotenv/dotenv.plugin");
 
-const useSSL = getEnv("DB_SSL") === "true"; // <- Asegura lectura correcta
+const useSSL = getEnv("DB_SSL") === "true";
 
 /**
  * Configures and returns a Sequelize instance for connecting to a PostgreSQL database.
