@@ -38,6 +38,7 @@ const Alumnos = sequelize.define(
     createdAt: false,
     updatedAt: false,
     deletedAt: false,
+    schema: "alumnos",
   }
 );
 
