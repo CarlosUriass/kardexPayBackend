@@ -7,17 +7,12 @@ const tramitesRoutes = require("./modules/tramites/routes/tramitesRoutes");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-  })
-);
+app.use(cors());
 
 // Middleware para JSON
 app.use(express.json());
 
 // rutas
-
 app.use("/auth", loginRouter);
 app.use("/api", getStudentDataRouter);
 app.use("/api/esp32", esp32Routes);
