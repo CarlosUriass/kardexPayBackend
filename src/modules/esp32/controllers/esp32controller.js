@@ -1,17 +1,26 @@
 function receiveData(req, res) {
-  const { message } = req.body;
+  let { amount } = req.body;
 
-  if (!message) {
-    return res.status(400).json({ error: 'Falta el campo "message"' });
-  }
+  amount = parseInt(amount);
+  // Obtener clientes WebSocket desde app
+  const clients = req.app.get("wssClients");
 
-  console.log("Mensaje recibido desde ESP32:", message);
-
-  // Aquí puedes agregar lógica para guardar en base de datos, etc.
+  // Enviar a todos los clientes conectados
+  clients.forEach((client) => {
+    if (client.readyState === 1) {
+      client.send(
+        JSON.stringify({
+          from: "ESP32",
+          amount,
+          message: "pago recibido",
+        })
+      );
+    }
+  });
 
   return res.status(200).json({
     status: "ok",
-    received: message,
+    amount,
   });
 }
 
