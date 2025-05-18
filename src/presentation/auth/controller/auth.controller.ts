@@ -26,4 +26,20 @@ export class AuthController {
       });
     }
   };
+
+  verifyEmail = async (req: Request, res: Response): Promise<void> => {
+    const { token } = req.query;
+
+    if (!token || typeof token !== "string") {
+      res.status(400).json({ message: "Token no proporcionado o no válido" });
+      return;
+    }
+
+    try {
+      await this.authService.verifyEmail(token);
+      res.status(200).json({ message: "Correo verificado correctamente" });
+    } catch (error) {
+      res.status(400).json({ message: "Token inválido o expirado" });
+    }
+  };
 }
