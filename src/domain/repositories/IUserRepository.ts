@@ -9,4 +9,6 @@ export interface IUserRepository {
     password: string,
     id_rol: number
   ): Promise<User | null>;
+
+  verifyEmail(userId: String): Promise<User | null>;
 }
