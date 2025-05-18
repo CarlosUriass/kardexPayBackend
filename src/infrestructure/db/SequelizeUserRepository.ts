@@ -1,6 +1,6 @@
 import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { User } from "../../domain/entities/User";
-import { ModelStatic } from "sequelize";
+import { ModelStatic, where } from "sequelize";
 import { UserModel } from "./SequelizeUserModel";
 
 export class SequelizeUserRepository implements IUserRepository {
@@ -13,7 +13,8 @@ export class SequelizeUserRepository implements IUserRepository {
       record.id_user,
       record.email,
       record.password,
-      record.id_rol
+      record.id_rol,
+      record.email_verified
     );
   }
 
@@ -26,7 +27,8 @@ export class SequelizeUserRepository implements IUserRepository {
       record.id_user,
       record.email,
       record.password,
-      record.id_rol
+      record.id_rol,
+      record.email_verified
     );
   }
 
@@ -47,7 +49,30 @@ export class SequelizeUserRepository implements IUserRepository {
       record.id_user,
       record.email,
       record.password,
-      record.id_rol
+      record.id_rol,
+      record.email_verified
+    );
+  }
+
+  async verifyEmail(userId: string): Promise<User | null> {
+    const [affectedRows] = await this.userModel.update(
+      { email_verified: true },
+      { where: { id_user: userId } }
+    );
+
+    if (affectedRows === 0) return null;
+
+    const updatedUser = await this.userModel.findOne({
+      where: { id_user: userId },
+    });
+    if (!updatedUser) return null;
+
+    return new User(
+      updatedUser.id_user,
+      updatedUser.email,
+      updatedUser.password,
+      updatedUser.id_rol,
+      updatedUser.email_verified
     );
   }
 }

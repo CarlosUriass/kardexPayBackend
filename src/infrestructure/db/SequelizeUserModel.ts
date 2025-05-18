@@ -5,6 +5,7 @@ export interface UserModel extends Model {
   email: string;
   password: string;
   id_rol: number | null;
+  email_verified: boolean;
 }
 
 export const defineUserModel = (
@@ -29,6 +30,10 @@ export const defineUserModel = (
       },
       id_rol: {
         type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      email_verified: {
+        type: DataTypes.BOOLEAN,
         allowNull: true,
       },
     },
