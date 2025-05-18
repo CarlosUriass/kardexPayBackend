@@ -20,6 +20,7 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.0",
+    "resend": "^4.5.1",
     "sequelize": "^6.37.7",
     "undici-types": "^6.21.0",
     "uuid": "^11.1.0"
