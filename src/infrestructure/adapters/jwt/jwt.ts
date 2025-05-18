@@ -18,4 +18,13 @@ export class JwtAdapter implements IJwt {
       );
     });
   }
+
+  async verifyToken(token: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      jwt.verify(token, envs.JWT, (err, decoded) => {
+        if (err) return reject(err);
+        resolve(decoded);
+      });
+    });
+  }
 }
