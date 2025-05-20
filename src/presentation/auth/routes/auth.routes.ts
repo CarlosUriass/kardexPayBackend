@@ -1,4 +1,3 @@
-// routes.ts
 import { Router } from "express";
 import { AuthController } from "../controller/auth.controller";
 import { buildAuthService } from "../di/auth.di";
