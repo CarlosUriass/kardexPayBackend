@@ -1,6 +1,6 @@
 import { AuthService } from "../services/Auth.service";
-import { SequelizeUserRepository } from "../../../infrestructure/db/SequelizeUserRepository";
-import { defineUserModel } from "../../../infrestructure/db/SequelizeUserModel";
+import { SequelizeUserRepository } from "../../../infrestructure/db/repositories/users/UserRepository";
+import { defineUserModel } from "../../../infrestructure/db/models/users/UserModel";
 import { sequelize } from "../../../infrestructure/db/sequelize";
 import { BcryptPasswordHasher } from "../../../infrestructure/adapters/Bcrypt/BcryptPasswordHasher";
 import { JwtAdapter } from "../../../infrestructure/adapters/jwt/jwt";

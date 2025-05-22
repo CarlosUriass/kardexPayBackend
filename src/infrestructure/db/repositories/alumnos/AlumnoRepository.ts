@@ -1,9 +1,9 @@
-import { IAlumnoRepository } from "../../domain/repositories/IAlumnosRepository";
-import { Alumno } from "../../domain/entities/Alumno";
+import { IAlumnoRepository } from "../../../../domain/repositories/IAlumnosRepository";
+import { Alumno } from "../../../../domain/entities/Alumno";
 import { ModelStatic, where } from "sequelize";
-import { AlumnoModel } from "./SequelizeAlumnoModel";
+import { AlumnoModel } from "../../models/alumnos/AlumnoModel";
 
-export class SequelizeAlumnoRepository implements IAlumnoRepository {
+export class AlumnoRepository implements IAlumnoRepository {
   constructor(private readonly AlumnoModel: ModelStatic<AlumnoModel>) {}
 
   async findByMatricula(matricula: string): Promise<Alumno | null> {

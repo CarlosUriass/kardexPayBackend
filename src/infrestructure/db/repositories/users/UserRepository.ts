@@ -1,7 +1,7 @@
-import { IUserRepository } from "../../domain/repositories/IUserRepository";
-import { User } from "../../domain/entities/User";
+import { IUserRepository } from "../../../../domain/repositories/IUserRepository";
+import { User } from "../../../../domain/entities/User";
 import { ModelStatic, where } from "sequelize";
-import { UserModel } from "./SequelizeUserModel";
+import { UserModel } from "../../models/users/UserModel";
 
 export class SequelizeUserRepository implements IUserRepository {
   constructor(private readonly userModel: ModelStatic<UserModel>) {}
